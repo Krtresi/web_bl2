@@ -4,85 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./tab.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Paytone+One:wght@400&display=swap">
-    <link rel="stylesheet" type="text/css" href="./styles.css">
-    <style>
-        /* Ваш CSS-код тут */
-    </style>
+    <title>Опитування</title>
+    <link rel="stylesheet" type="text/css" href="cs.css">
 </head>
 
 <body>
-    <header>
-        <a href="#" class="logo">LNU</a>
-        <div class="navbar">
-            <a href="index.html">Home</a>
-        </div>
-    </header>
-    <section class="home" id="home">
-        <div class="home-text">
-            <h1>Опитування нижче</h1>
-            
-        </div>
-
-        <h1 class="survey-heading">Опитування</h1>
-
-        <form action="/submit" method="post" class="survey-form">
-            <label for="faculty">1. На якому факультеті ви навчаєтесь?</label>
-            <select id="faculty" name="faculty">
-                <option value="engineering">прикладної математики та інформатики</option>
-                <option value="science">Електроніки та комп. технологій</option>
-                <option value="business">Фізичний</option>
-                <option value="business">Біологічний</option>
-            </select>
-            
-            <br>
-            
-            <label>2. Виберіть курс(потік) на якому ви навчаєтесь:</label>
-            <input type="radio" id="stream1" name="stream" value="stream1">
-            <label for="stream1">1 курс</label>
-            <input type="radio" id="stream2" name="stream" value="stream2">
-            <label for="stream2">2 курс</label>
-            <input type="radio" id="stream3" name="stream" value="stream3">
-            <label for="stream3">3 курс</label>
-            <input type="radio" id="stream4" name="stream" value="stream4">
-            <label for="stream4">4 курс</label>
-            
-            <br>
-            
-            <label>3. Вкажіть академічну групу:</label>
-            <input type="checkbox" id="groupA" name="group[]" value="groupA">
-            <label for="groupA">ФЕІ</label>
-            <input type="checkbox" id="groupB" name="group[]" value="groupB">
-            <label for="groupB">ФЕП</label>
-            <input type="checkbox" id="groupC" name="group[]" value="groupC">
-            <label for="groupC">ФПМ</label>
-            <input type="checkbox" id="groupD" name="group[]" value="groupD">
-            <label for="groupD">ФФІ</label>
-            
-            <br>
-            
-            <label>4. Виберіть зручний час для проходження співбесіди:</label>
-            <input type="date" id="interviewDate" name="interviewDate">
-            <input type="time" id="interviewTime" name="interviewTime">
-            <input type="week" id="interviewWeek" name="interviewWeek">
-            
-            <br>
-            
-            <label for="averageGrade">5. Вкажіть середній бал:</label>
-            <input type="number" id="averageGrade" name="averageGrade" min="0" max="100">
-            
-            <!-- Додайте аналогічний код для інших питань 6-10 -->
-            
-            <br>
-            
-            <input type="submit" value="Відправити">
+    <div class="survey-container">
+        <form id="surveyForm">
+            <h2>Опитування</h2>
+            <ol>
+                <li>
+                    <label>Ваше прізвище та ім'я</label>
+                    <input type="text" name="userName">
+                </li>
+                <li>
+                    <label>Як часто ви подорожуєте?</label>
+                    <select name="travelFrequency">
+                        <option value="everymounth">кожен місяць</option>
+                        <option value="onesayear">кілька разів на рік</option>
+                        <option value="never">раз на кілька років</option>
+                    </select>
+                </li>
+                <li>
+                    <label>На скільки ви задоволені планом подорожей?</label>
+                    <input type="range" name="satisfactionLevel" min="1" max="10">
+                </li>
+                <li>
+                    <label>Яку б країну ви обрали?</label><br>
+                    <input type="radio" name="destinationCountry" value="usa">США<br>
+                    <input type="radio" name="destinationCountry" value="brazil">Бразилія<br>
+                    <input type="radio" name="destinationCountry" value="malta">Мальта<br>
+                </li>
+                <li>
+                    <label>На скільки часто ви б хотіли подорожувати?</label>
+                    <select name="desiredFrequency">
+                        <option value="weekly">Щотижнево</option>
+                        <option value="monthly">Щомісяця</option>
+                        <option value="occasionally">Рідко</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Який спосіб відпочинку ви обираєте?</label><br>
+                    <input type="checkbox" name="relaxationMethod" value="walk">прогулянки<br>
+                    <input type="checkbox" name="relaxationMethod" value="party">вечірки<br>
+                    <input type="checkbox" name="relaxationMethod" value="extrim">екстрим<br>
+                </li>
+                <li>
+                    <label>Чи готові ви до екстриму?</label><br>
+                    <input type="radio" name="readyForExtreme" value="yes">Так<br>
+                    <input type="radio" name="readyForExtreme" value="no">Ні<br>
+                </li>
+                <li>
+                    <label>оцініть наші тури?</label>
+                    <select name="activityLevel">
+                        <option value="sedentary">Малорухливий</option>
+                        <option value="moderate">Помірно активний</option>
+                        <option value="active">Активний</option>
+                        <option value="veryActive">Дуже активний</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Залиште ваш відгук щодо якості обслуговування:</label><br>
+                    <textarea name="feedback" rows="4" cols="50"></textarea>
+                </li>
+            </ol>
+            <button type="submit">Надіслати</button>
         </form>
-    </section>
+        <button id="showResultsButton">Показати результати</button>
+    </div>
+<h2 class="hidden">Результати опитування (частота подорожей)</h2>
+<table class="survey-results" id="travel">
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+        </tr>
+    </thead>
+    <tbody id="travelResultsBody">
+        <!-- Тут будуть імена користувачів з алергією на протеїни -->
+    </tbody>
+</table>
+
+<h2 class="hidden">Результати опитування (екстрим)</h2>
+<table class="survey-results" id="extrimmResults">
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+        </tr>
+    </thead>
+    <tbody id="extrimResultsBody">
+        <!-- Тут будуть імена користувачів зі збалансованим харчуванням -->
+    </tbody>
+</table>
+
+<h2 class="hidden">Результати опитування (малорухливий)</h2>
+<table class="survey-results" id="sedentaryResults">
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+        </tr>
+    </thead>
+    <tbody id="sedentaryResultsBody">
+        <!-- Тут будуть імена малорухливих користувачів -->
+    </tbody>
+</table>
+    <script src="2.js"></script>
 </body>
 
-<script src="./2.js"></script>
-
 </html>
-
-   

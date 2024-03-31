@@ -1,52 +1,203 @@
-document.addEventListener('DOMContentLoaded', function() {
-        // Отримання форми за допомогою JavaScript
-        var surveyForm = document.querySelector('.survey-form');
+document.addEventListener('DOMContentLoaded', function () {
+    const surveyForm = document.getElementById('surveyForm');
+    const surveyResults = JSON.parse(localStorage.getItem('surveyResults')) || {};
 
-        // Додавання слухача подій на подію submit форми
-        surveyForm.addEventListener('submit', function(event) {
-            // Заборона стандартної поведінки форми (щоб сторінка не перезавантажувалася)
-            event.preventDefault();
+    surveyForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(surveyForm);
 
-            // Отримання значень з полів форми
-            var facultyValue = document.getElementById('faculty').value;
-            var streamValue = document.querySelector('input[name="stream"]:checked').value;
-            var groupValues = Array.from(document.querySelectorAll('input[name="group[]"]:checked')).map(checkbox => checkbox.value);
-            var interviewDateValue = document.getElementById('interviewDate').value;
-            var interviewTimeValue = document.getElementById('interviewTime').value;
-            var interviewWeekValue = document.getElementById('interviewWeek').value;
-            var averageGradeValue = document.getElementById('averageGrade').value;
+        const userName = formData.get('userName');
+        surveyResults[userName] = {};
 
-            // Збереження значень в localStorage
-            localStorage.setItem('faculty', facultyValue);
-            localStorage.setItem('stream', streamValue);
-            localStorage.setItem('group', JSON.stringify(groupValues));
-            localStorage.setItem('interviewDate', interviewDateValue);
-            localStorage.setItem('interviewTime', interviewTimeValue);
-            localStorage.setItem('interviewWeek', interviewWeekValue);
-            localStorage.setItem('averageGrade', averageGradeValue);
+        for (const [name, value] of formData.entries()) {
+            surveyResults[userName][name] = value;
+        }
 
-            // Вивід повідомлення або виконання інших дій
-            alert('Дані збережено в localStorage!');
+        localStorage.setItem('surveyResults', JSON.stringify(surveyResults));
+
+        alert('Результати опитування успішно збережені!');
+        surveyForm.reset();
+    });
+
+    const filterTravelFrequencyUsers = () => {
+        const travelFrequencyUsers = [];
+
+        for (const userName in surveyResults) {
+            const userResults = surveyResults[userName];
+            if (userResults.travelFrequency === 'everymounth') {
+                travelFrequencyUsers.push(userName);
+            }
+        }
+
+        return travelFrequencyUsers;
+    };
+
+    const filterTravelSatisfactionUsers = () => {
+        const travelSatisfactionUsers = [];
+
+        for (const userName in surveyResults) {
+            const userResults = surveyResults[userName];
+            if (parseInt(userResults.satisfactionLevel) >= 7) {
+                travelSatisfactionUsers.push(userName);
+            }
+        }
+
+        return travelSatisfactionUsers;
+    };
+
+    const filterTravelDestinationUsers = () => {
+        const travelDestinationUsers = [];
+
+        for (const userName in surveyResults) {
+            const userResults = surveyResults[userName];
+            if (userResults.destinationCountry === 'usa') {
+                travelDestinationUsers.push(userName);
+            }
+        }
+
+        return travelDestinationUsers;
+    };
+
+    const filterTravelFrequencyWishUsers = () => {
+        const travelFrequencyWishUsers = [];
+
+        for (const userName in surveyResults) {
+            const userResults = surveyResults[userName];
+            if (userResults.desiredFrequency === 'weekly') {
+                travelFrequencyWishUsers.push(userName);
+            }
+        }
+
+        return travelFrequencyWishUsers;
+    };
+
+    const showResultsButton = document.getElementById('showResultsButton');
+    showResultsButton.addEventListener('click', function () {
+        showResultsButton.style.display = 'none';
+
+        const travelResultsBody = document.getElementById('travelResultsBody');
+        const extrimResultsBody = document.getElementById('extrimResultsBody');
+        const sedentaryResultsBody = document.getElementById('sedentaryResultsBody');
+        const travelFrequencyWishResultsBody = document.getElementById('travelFrequencyWishResultsBody');
+
+        travelResultsBody.innerHTML = '';
+        extrimResultsBody.innerHTML = '';
+        sedentaryResultsBody.innerHTML = '';
+        travelFrequencyWishResultsBody.innerHTML = '';
+
+        const displayUsersWithTravelFrequency = () => {
+            const travelFrequencyUsers = filterTravelFrequencyUsers();
+
+            travelFrequencyUsers.forEach(userName => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${userName}</td>`;
+                travelResultsBody.appendChild(newRow);
+            });
+        };
+
+        const displayUsersWithTravelSatisfaction = () => {
+            const travelSatisfactionUsers = filterTravelSatisfactionUsers();
+
+            travelSatisfactionUsers.forEach(userName => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${userName}</td>`;
+                extrimResultsBody.appendChild(newRow);
+            });
+        };
+
+        const displayUsersWithTravelDestination = () => {
+            const travelDestinationUsers = filterTravelDestinationUsers();
+
+            travelDestinationUsers.forEach(userName => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${userName}</td>`;
+                sedentaryResultsBody.appendChild(newRow);
+            });
+        };
+
+        const displayUsersWithTravelFrequencyWish = () => {
+            const travelFrequencyWishUsers = filterTravelFrequencyWishUsers();
+
+            travelFrequencyWishUsers.forEach(userName => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${userName}</td>`;
+                travelFrequencyWishResultsBody.appendChild(newRow);
+            });
+        };
+
+        displayUsersWithTravelFrequency();
+        displayUsersWithTravelSatisfaction();
+        displayUsersWithTravelDestination();
+        displayUsersWithTravelFrequencyWish();
+
+        const surveyResultsTables = document.querySelectorAll('.survey-results');
+        surveyResultsTables.forEach(table => {
+            table.style.display = 'table';
         });
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const surveyResults = JSON.parse(localStorage.getItem('surveyResults')) || {};
 
-        // При завантаженні сторінки можна перевірити, чи є дані в localStorage і, якщо є, заповнити форму
-        window.onload = function() {
-            var savedFaculty = localStorage.getItem('faculty');
-            var savedStream = localStorage.getItem('stream');
-            var savedGroup = JSON.parse(localStorage.getItem('group')) || [];
-            var savedInterviewDate = localStorage.getItem('interviewDate');
-            var savedInterviewTime = localStorage.getItem('interviewTime');
-            var savedInterviewWeek = localStorage.getItem('interviewWeek');
-            var savedAverageGrade = localStorage.getItem('averageGrade');
+    const showResultsButton = document.getElementById('showResultsButton');
+    showResultsButton.addEventListener('click', function () {
+        showResultsButton.style.display = 'none';
 
-            if (savedFaculty && savedStream && savedGroup.length > 0 && savedInterviewDate && savedInterviewTime && savedInterviewWeek && savedAverageGrade) {
-                document.getElementById('faculty').value = savedFaculty;
-                document.querySelector('input[name="stream"][value="' + savedStream + '"]').checked = true;
-                savedGroup.forEach(value => document.getElementById('group' + value).checked = true);
-                document.getElementById('interviewDate').value = savedInterviewDate;
-                document.getElementById('interviewTime').value = savedInterviewTime;
-                document.getElementById('interviewWeek').value = savedInterviewWeek;
-                document.getElementById('averageGrade').value = savedAverageGrade;
+        // Functions to display results
+        const displayUsersWithTravelFrequency = () => {
+            const travelResultsBody = document.getElementById('travelResultsBody');
+            travelResultsBody.innerHTML = '';
+
+            // Iterate through survey results and populate the table
+            for (const userName in surveyResults) {
+                const userResults = surveyResults[userName];
+                if (userResults.travelFrequency === 'everymounth') {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `<td>${userName}</td>`;
+                    travelResultsBody.appendChild(newRow);
+                }
             }
         };
+
+        const displayUsersWithExtrim = () => {
+            const extrimResultsBody = document.getElementById('extrimResultsBody');
+            extrimResultsBody.innerHTML = '';
+
+            // Iterate through survey results and populate the table
+            for (const userName in surveyResults) {
+                const userResults = surveyResults[userName];
+                if (userResults.readyForExtreme === 'yes') {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `<td>${userName}</td>`;
+                    extrimResultsBody.appendChild(newRow);
+                }
+            }
+        };
+
+        const displayUsersWithSedentary = () => {
+            const sedentaryResultsBody = document.getElementById('sedentaryResultsBody');
+            sedentaryResultsBody.innerHTML = '';
+
+            // Iterate through survey results and populate the table
+            for (const userName in surveyResults) {
+                const userResults = surveyResults[userName];
+                if (userResults.activityLevel === 'sedentary') {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `<td>${userName}</td>`;
+                    sedentaryResultsBody.appendChild(newRow);
+                }
+            }
+        };
+
+        // Call display functions
+        displayUsersWithTravelFrequency();
+        displayUsersWithExtrim();
+        displayUsersWithSedentary();
+
+        // Display result tables
+        const surveyResultsTables = document.querySelectorAll('.survey-results');
+        surveyResultsTables.forEach(table => {
+            table.style.display = 'table';
+        });
     });
+});

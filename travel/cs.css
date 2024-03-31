@@ -1,0 +1,97 @@
+/* Стилі для форми опитування */
+.survey-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #6e758a;
+    /* Змінив фоновий колір */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Paytone One", sans-serif;
+    /* Додав шрифт */
+}
+
+#surveyForm {
+    margin-bottom: 20px;
+}
+
+#surveyForm h2 {
+    font-size: 24px;
+    /* Збільшив розмір шрифту заголовка */
+    margin-bottom: 20px;
+}
+
+#surveyForm ol {
+    list-style: none;
+    padding: 0;
+}
+
+#surveyForm ol li {
+    margin-bottom: 20px;
+}
+
+#surveyForm label {
+    font-weight: bold;
+}
+
+#surveyForm input[type="text"],
+#surveyForm select,
+#surveyForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-family: "Paytone One", sans-serif;
+    /* Додав шрифт */
+}
+
+#surveyForm input[type="range"] {
+    width: 100%;
+}
+
+#surveyForm button[type="submit"],
+#showResultsButton {
+    background-color: #6e54fa;
+    /* Змінив колір кнопки */
+    color: #fff;
+    /* Змінив колір тексту на кнопці */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Paytone One", sans-serif;
+    /* Додав шрифт */
+}
+
+#surveyForm button[type="submit"]:hover,
+#showResultsButton:hover {
+    background-color: #b76cbd;
+    /* Змінив колір кнопки при наведенні */
+}
+
+/* Сховані елементи для результатів опитування */
+.hidden {
+    display: none;
+}
+
+/* Стилі для таблиць результатів опитування */
+.survey-results {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.survey-results th,
+.survey-results td {
+    padding: 10px;
+    border: 1px solid #b80f0f;
+}
+
+/* Додаткові стилі для таблиць результатів */
+#travel,
+#extrimmResults,
+#sedentaryResults {
+    display: none;
+}
