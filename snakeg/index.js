@@ -152,3 +152,35 @@ const updateSnakePosition = () => {
     head.x += head.vX;
     head.y += head.vY;
 };
+const changeDir = (e) => {
+    let key = e.keyCode;
+
+    if (key == 68 || key == 39) {
+        if (head.vX === -1) return;
+        head.vX = 1;
+        head.vY = 0;
+        gameActive = true;
+        return;
+    }
+    if (key == 65 || key == 37) {
+        if (head.vX === 1) return;
+        head.vX = -1;
+        head.vY = 0;
+        gameActive = true;
+        return;
+    }
+    if (key == 87 || key == 38) {
+        if (head.vY === 1) return;
+        head.vX = 0;
+        head.vY = -1;
+        gameActive = true;
+        return;
+    }
+    if (key == 83 || key == 40) {
+        if (head.vY === -1) return;
+        head.vX = 0;
+        head.vY = 1;
+        gameActive = true;
+        return;
+    }
+};
