@@ -132,3 +132,23 @@ const drawGrid = () => {
     ctx.strokeStyle = canvasStrokeColor;
     ctx.stroke();
 };
+
+const drawSnake = () => {
+    //loop through our snakeparts array
+    snakeParts.forEach((part) => {
+        part.draw();
+    });
+
+    snakeParts.push(new Tail(head.x, head.y));
+
+    if (snakeParts.length > tailLength) {
+        snakeParts.shift(); //remove furthest item from  snake part if we have more than our tail size
+    }
+    head.color = randomColor();
+    head.draw();
+};
+
+const updateSnakePosition = () => {
+    head.x += head.vX;
+    head.y += head.vY;
+};
