@@ -184,3 +184,17 @@ const changeDir = (e) => {
         return;
     }
 };
+const foodCollision = () => {
+    let foodCollision = false;
+    snakeParts.forEach((part) => {
+        if (part.x == food.x && part.y == food.y) {
+            foodCollision = true;
+        }
+    });
+    if (foodCollision) {
+        food.x = Math.floor(Math.random() * cellCount);
+        food.y = Math.floor(Math.random() * cellCount);
+        score++;
+        tailLength++;
+    }
+};
