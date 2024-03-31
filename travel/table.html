@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./tab.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Paytone+One:wght@400&display=swap">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <style>
+        /* Ваш CSS-код тут */
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">LNU</a>
+        <div class="navbar">
+            <a href="index.html">Home</a>
+        </div>
+    </header>
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Опитування нижче</h1>
+            
+        </div>
+
+        <h1 class="survey-heading">Опитування</h1>
+
+        <form action="/submit" method="post" class="survey-form">
+            <label for="faculty">1. На якому факультеті ви навчаєтесь?</label>
+            <select id="faculty" name="faculty">
+                <option value="engineering">прикладної математики та інформатики</option>
+                <option value="science">Електроніки та комп. технологій</option>
+                <option value="business">Фізичний</option>
+                <option value="business">Біологічний</option>
+            </select>
+            
+            <br>
+            
+            <label>2. Виберіть курс(потік) на якому ви навчаєтесь:</label>
+            <input type="radio" id="stream1" name="stream" value="stream1">
+            <label for="stream1">1 курс</label>
+            <input type="radio" id="stream2" name="stream" value="stream2">
+            <label for="stream2">2 курс</label>
+            <input type="radio" id="stream3" name="stream" value="stream3">
+            <label for="stream3">3 курс</label>
+            <input type="radio" id="stream4" name="stream" value="stream4">
+            <label for="stream4">4 курс</label>
+            
+            <br>
+            
+            <label>3. Вкажіть академічну групу:</label>
+            <input type="checkbox" id="groupA" name="group[]" value="groupA">
+            <label for="groupA">ФЕІ</label>
+            <input type="checkbox" id="groupB" name="group[]" value="groupB">
+            <label for="groupB">ФЕП</label>
+            <input type="checkbox" id="groupC" name="group[]" value="groupC">
+            <label for="groupC">ФПМ</label>
+            <input type="checkbox" id="groupD" name="group[]" value="groupD">
+            <label for="groupD">ФФІ</label>
+            
+            <br>
+            
+            <label>4. Виберіть зручний час для проходження співбесіди:</label>
+            <input type="date" id="interviewDate" name="interviewDate">
+            <input type="time" id="interviewTime" name="interviewTime">
+            <input type="week" id="interviewWeek" name="interviewWeek">
+            
+            <br>
+            
+            <label for="averageGrade">5. Вкажіть середній бал:</label>
+            <input type="number" id="averageGrade" name="averageGrade" min="0" max="100">
+            
+            <!-- Додайте аналогічний код для інших питань 6-10 -->
+            
+            <br>
+            
+            <input type="submit" value="Відправити">
+        </form>
+    </section>
+</body>
+
+<script src="./2.js"></script>
+
+</html>
+
+   
