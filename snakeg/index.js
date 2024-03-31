@@ -218,3 +218,10 @@ const isGameOver = () => {
 
     return gameOver;
 };
+const showGameOver = () => {
+    const text = document.createElement("div");
+    text.setAttribute("id", "game_over");
+    text.innerHTML = "game over !";
+    const body = document.querySelector("body");
+    body.appendChild(text);
+};
