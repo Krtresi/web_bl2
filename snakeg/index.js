@@ -106,3 +106,29 @@ const food = {
 };
 
 
+// this will set canvas style
+const setCanvas = () => {
+    // canvas fill
+    ctx.fillStyle = canvasFillColor;
+    ctx.fillRect(0, 0, w, h);
+
+    // canvas stroke
+    ctx.strokeStyle = canvasStrokeColor;
+    ctx.strokeRect(0, 0, w, h);
+};
+
+//   this will draw the grid
+const drawGrid = () => {
+    ctx.beginPath();
+    for (let i = 0; i <= grid_line_len; i += cellSize) {
+        ctx.moveTo(i + pGrid, pGrid);
+        ctx.lineTo(i + pGrid, grid_line_len + pGrid);
+    }
+    for (let i = 0; i <= grid_line_len; i += cellSize) {
+        ctx.moveTo(pGrid, i + pGrid);
+        ctx.lineTo(grid_line_len + pGrid, i + pGrid);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = canvasStrokeColor;
+    ctx.stroke();
+};
