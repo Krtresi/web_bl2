@@ -47,3 +47,62 @@ const randomColor = () => {
     color = colorArr[Math.floor(Math.random() * 2)];
     return color;
 };
+
+const head = {
+    x: 2,
+    y: 1,
+    color: randomColor(),
+    vX: 0,
+    vY: 0,
+    draw: () => {
+        ctx.fillStyle = head.color;
+        ctx.shadowColor = head.color;
+        ctx.shadowBlur = 2.5;
+        ctx.fillRect(
+            head.x * cellSize + pGrid,
+            head.y * cellSize + pGrid,
+            cellSize,
+            cellSize
+        );
+    },
+};
+
+let tailLength = 4;
+let snakeParts = [];
+class Tail {
+    color = "#42f57e";
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 2.5;
+        ctx.fillRect(
+            this.x * cellSize + pGrid,
+            this.y * cellSize + pGrid,
+            cellSize,
+            cellSize
+        );
+    }
+};
+
+const food = {
+    x: 5,
+    y: 5,
+    color: "#FF3131",
+    draw: () => {
+        ctx.fillStyle = food.color;
+        ctx.shadowColor = food.color;
+        ctx.shadowBlur = 5;
+        ctx.fillRect(
+            food.x * cellSize + pGrid,
+            food.y * cellSize + pGrid,
+            cellSize,
+            cellSize
+        );
+    },
+};
+
+
