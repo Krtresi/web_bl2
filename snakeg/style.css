@@ -1,0 +1,77 @@
+/* базові стилі для гри */
+body {
+    background: #879bdb;
+    color: white;
+}
+
+/* стилі для канви гри */
+#canvas {
+    background: #fff;
+    margin-left: 50%;
+    margin-top: 1%;
+    transform: translateX(-50%);
+}
+
+/* стилі для елементів керування */
+#controls {
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    display: flex;
+    flex-direction: column;
+}
+
+#control-keys {
+    top: 200px;
+    right: 7%;
+    position: absolute;
+    color: #ccccccd7;
+    padding: 12px;
+    font-size: 1.2em;
+    line-height: 48px;
+    box-shadow: 0 0 8px rgb(255, 255, 255);
+}
+
+#control-head {
+    text-align: center;
+    font-family: "Press Start 2P", cursive;
+}
+
+/* стилі для кнопок керування */
+#reset,
+#show-grid,
+.pause-active {
+    background: #e07bf2;
+    color: #cccccc;
+    border-radius: 25px;
+    width: 120px;
+    padding: 12px;
+    margin-top: 18px;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: box-shadow 0.3s;
+    text-shadow: 0 0 8px rgb(55, 82, 81);
+    text-transform: uppercase;
+}
+
+.pause-not-active {
+    background: rgba(239, 239, 240, 0.4);
+    box-shadow: none;
+    color: #cccccc;
+    border-radius: 25px;
+    width: 120px;
+    padding: 12px;
+    margin-top: 18px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgb(46, 78, 76);
+    text-transform: uppercase;
+}
+
+#reset:hover,
+#show-grid:hover,
+.pause-active:hover {
+    box-shadow: 0 0 12px rgb(208, 218, 208);
+    color: rgb(98, 101, 92);
+}
